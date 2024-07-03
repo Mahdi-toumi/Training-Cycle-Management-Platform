@@ -47,7 +47,7 @@
                 <form method="post" action="updatecycle.php"  class="form-inline">
                     <div class="form-group">
                         <br>
-                        <input type="hidden" id="num_action" name="id" class="form-control margeright" value="<?php echo $id ?>" required>
+                        <input type="hidden" id="id" name="id" class="form-control margeright" value="<?php echo $id ?>" required>
                         <label for="num_action">N° action :</label>
                         <input type="text" id="num_action" name="num_action" class="form-control margeright" value="<?php echo $num_action ?>" required> <br><br>
                         

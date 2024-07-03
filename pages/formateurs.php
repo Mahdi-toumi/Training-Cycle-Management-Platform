@@ -15,7 +15,7 @@
         }
     
         if ($direction != "") {
-            $requete .= " AND direction = '$direction'";
+            $requete .= " AND direction LIKE '%$direction%'";
         }
     
      
@@ -31,7 +31,7 @@
         }
     
         if ($direction != "") {
-            $requetecount .= " AND direction = '$direction'";
+            $requetecount .= " AND direction LIKE '%$direction%'";
         }
     
        
@@ -70,8 +70,8 @@
             <div class="panel-body">
                 <form method="get" action="formateurs.php" class="form-inline">
                     <div class="form-group">
-                        <input type="text" name="specialite" id="specialite" placeholder="Taper la specialite" class="form-control" > &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" name="direction" id="direction" placeholder="Taper la direction" class="form-control"> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="specialite" id="specialite" placeholder="Taper la specialite" class="form-control" > &nbsp;&nbsp;&nbsp;&nbsp;                      
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-search"></span> Chercher...
                         </button> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -104,15 +104,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($participant = $resultat->fetch_assoc()) { ?>
+                        <?php while ($formateurs = $resultat->fetch_assoc()) { ?>
                             <tr>
-                                <td><?php echo $participant['id']; ?></td>
-                                <td><?php echo $participant['nom'] . " " . $participant['prenom']; ?></td>
-                                <td><?php echo $participant['direction']; ?></td>
-                                <td><?php echo $participant['specialite']; ?></td>
+                                <td><?php echo $formateurs['id']; ?></td>
+                                <td><?php echo $formateurs['nom'] . " " . $formateurs['prenom']; ?></td>
+                                <td><?php echo $formateurs['direction']; ?></td>
+                                <td><?php echo $formateurs['specialite']; ?></td>
                                 <td>
-                                         <a href="modifierformateur.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                         <a onclick= "return confirm('Etes vous sur de vouloir supprimer le formateur')" href="supprimerformateur.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
+                                         <a href="modifierformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                         <a onclick= "return confirm('Etes vous sur de vouloir supprimer le formateur')" href="supprimerformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
                                     </td> 
                                 </tr>
 

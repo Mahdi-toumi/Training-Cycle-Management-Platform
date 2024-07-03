@@ -25,7 +25,7 @@
     $resultat = $conn->prepare($requete);
     $resultat->execute($params);
 
-    header('Location: cycles.php');
+    header('Location: formateurs.php');
     exit();
 
 ?>

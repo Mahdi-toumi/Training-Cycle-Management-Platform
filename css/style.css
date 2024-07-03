@@ -25,3 +25,12 @@
     font-size: 17px;
 
 }
+
+.margtop {
+    margin-top: 50px;
+}
+
+.centred,
+.centred tr th {
+    text-align: center;
+}

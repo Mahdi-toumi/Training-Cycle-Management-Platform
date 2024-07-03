@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include ("../connexion.php") ;
     
     
@@ -82,6 +83,7 @@
                         <input type="number" name="num_salle" id="num_salle" placeholder="N° salle" class="form-control"  min="1" max="100" >
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span>Chercher...</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
+                    <?php if (isset($_SESSION['user'])) { ?>
                     <a href="nouveaucycle.php">
                             
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -89,6 +91,7 @@
                                 Nouveau cycle
                                 
                             </a>
+                    <?php } ?>
                 </form>
             </div>
         </div>
@@ -98,7 +101,7 @@
                 Liste des cycles (<?php echo $nbrcycles ; ?> cycles)
             </div>
             <div class="panel-body">
-                <table class="table table-striped">
+                <table class="table table-striped centred">
                     <thead>
                         <tr>
                             <th>Id cycle</th> <th>Thème de formation</th> <th>Date debut</th> <th>Date fin</th> <th>Num salle</th>  <th></th> 
@@ -116,9 +119,11 @@
                                    <td><a href="affichercycle.php?id=<?php echo $cycles['id']  ?>">
                                         <span class="glyphicon glyphicon-list-alt"></span>    Afficher  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     
-                                         <a href="modifiercycle.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                         <a onclick= "return confirm('Etes vous sur de vouloir supprimer le cycle')" href="supprimercycle.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
-                                    </td> 
+                                        <?php if (isset($_SESSION['user'])) { ?>
+                                            <a href="modifiercycle.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a onclick= "return confirm('Etes vous sur de vouloir supprimer le cycle')" href="supprimercycle.php?id=<?php echo $cycles['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
+                                         <?php } ?>
+                                     </td> 
                                 </tr>
                                    
                             <?php } ?>

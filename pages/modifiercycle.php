@@ -1,26 +1,32 @@
 <?php 
-    include ("../connexion.php") ;
-
-    $id = isset($_GET['id']) ? $_GET['id'] : 0;
-    $requete = "SELECT * FROM cycles where id='$id' " ; 
-    $res = $conn -> query($requete) ;
-    if ($cycle = $res->fetch_assoc()) {
-        // Assign fetched data to variables
-        $num_action = $cycle['num_action'];
-        $entreprise = $cycle['entreprise'];
-        $theme = $cycle['theme'];
-        $mode = $cycle['mode'];
-        $lieu = $cycle['lieu'];
-        $gouvernorat = $cycle['gouvernorat'];
-        $credit_impot = $cycle['credit_impot'];
-        $droit_tirage = $cycle['droit_tirage'];
-        $date_deb = $cycle['date_deb'];
-        $date_fin = $cycle['date_fin'];
-        $heure_deb = $cycle['heure_deb'];
-        $heure_fin = $cycle['heure_fin'];
-        $pause_deb = $cycle['pause_deb'];
-        $pause_fin = $cycle['pause_fin'];
-        $num_salle = $cycle['num_salle'];
+    session_start();
+    
+    if (isset($_SESSION['user'])) {
+        include ("../connexion.php") ;
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $requete = "SELECT * FROM cycles where id='$id' " ; 
+        $res = $conn -> query($requete) ;
+        if ($cycle = $res->fetch_assoc()) {
+            // Assign fetched data to variables
+            $num_action = $cycle['num_action'];
+            $entreprise = $cycle['entreprise'];
+            $theme = $cycle['theme'];
+            $mode = $cycle['mode'];
+            $lieu = $cycle['lieu'];
+            $gouvernorat = $cycle['gouvernorat'];
+            $credit_impot = $cycle['credit_impot'];
+            $droit_tirage = $cycle['droit_tirage'];
+            $date_deb = $cycle['date_deb'];
+            $date_fin = $cycle['date_fin'];
+            $heure_deb = $cycle['heure_deb'];
+            $heure_fin = $cycle['heure_fin'];
+            $pause_deb = $cycle['pause_deb'];
+            $pause_fin = $cycle['pause_fin'];
+            $num_salle = $cycle['num_salle'];
+        }
+    }
+    else {
+        header('login.php') ;
     }
 
 ?> 

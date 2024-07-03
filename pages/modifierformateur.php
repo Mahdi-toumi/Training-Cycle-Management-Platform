@@ -1,15 +1,21 @@
 <?php 
-    include ("../connexion.php") ;
+    session_start();
+    
+    if (isset($_SESSION['user'])) {
+        include ("../connexion.php") ;
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $requete = "SELECT * FROM formateurs where id='$id' " ; 
+        $res = $conn -> query($requete) ;
+        if ($formateur = $res->fetch_assoc()) {
 
-    $id = isset($_GET['id']) ? $_GET['id'] : 0;
-    $requete = "SELECT * FROM formateurs where id='$id' " ; 
-    $res = $conn -> query($requete) ;
-    if ($formateur = $res->fetch_assoc()) {
-
-        $nom = $formateur['nom'];
-        $prenom = $formateur['prenom'];
-        $specialite = $formateur['specialite'];
-        $direction = $formateur['direction'];
+            $nom = $formateur['nom'];
+            $prenom = $formateur['prenom'];
+            $specialite = $formateur['specialite'];
+            $direction = $formateur['direction'];
+        }
+    }
+    else {
+        header('login.php') ;
     }
 
 ?> 

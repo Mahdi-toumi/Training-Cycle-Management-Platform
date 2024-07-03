@@ -1,5 +1,7 @@
 <?php 
-    include ("../connexion.php");
+   session_start() ;
+   if (!isset($_SESSION['user']))  header ('location: ../index.php') ;
+   include ("../connexion.php");
 
     $cin = isset($_GET['cin']) ? $_GET['cin'] : ""; 
     $theme = isset($_GET['theme']) ? $_GET['theme'] : ""; 

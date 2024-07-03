@@ -1,0 +1,27 @@
+.margetop {
+    margin-top: 60px;
+}
+
+.margeright {
+    margin-right: 50px;
+}
+
+.margeleft {
+    margin-left: 50px;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    transform: translateY(25%);
+}
+
+.info {
+    margin-right: 50px;
+    font-size: 17px;
+}
+
+.info-check {
+    font-size: 17px;
+
+}

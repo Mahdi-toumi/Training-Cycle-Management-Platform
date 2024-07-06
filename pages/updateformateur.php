@@ -1,7 +1,7 @@
 <?php 
     session_start() ;
     
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['admin'])) {
         include ("../connexion.php") ;
         $id = isset($_POST['id']) ? $_POST['id'] : 0;
         $nom = isset($_POST['nom']) ? $_POST['nom'] : "";

@@ -1,6 +1,6 @@
 <?php 
    session_start() ;
-   if (!isset($_SESSION['user']))  header ('location: ../index.php') ;
+   if (!isset($_SESSION['admin']))  header ('location: ../index.php') ;
    include ("../connexion.php");
 
     $cin = isset($_GET['cin']) ? $_GET['cin'] : ""; 

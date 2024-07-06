@@ -1,7 +1,7 @@
 <?php 
     session_start();
     
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['admin'])) {
             include ("../connexion.php") ;
             $id = isset($_POST['id']) ? $_POST['id'] : 0;
             $num_action = isset($_POST['num_action']) ? $_POST['num_action'] : "";
@@ -27,7 +27,7 @@
             $resultat = $conn->prepare($requete);
             $resultat->execute($params);
 
-            header('Location: formateurs.php');
+            header('Location: cycles.php');
             exit();
     
     }

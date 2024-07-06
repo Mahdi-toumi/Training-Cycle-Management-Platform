@@ -1,3 +1,22 @@
+<?php
+    session_start() ;
+    require_once('../connexion.php');
+    
+   
+    $requetef="select * from formateurs";
+    $resultatf=$conn->query($requetef);
+
+    if (isset($_SESSION['admin'])) {
+        if (isset($_SESSION['dispoformateur'])){
+                $erreurdispoformateur = $_SESSION['dispoformateur'];
+                unset($_SESSION['dispoformateur']);}
+        else {
+                $erreurdispoformateur = "";
+        }
+        
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,8 +86,24 @@
                         
                         <label for="num_salle">Numéro salle :</label>
                         <input type="number" name="num_salle" id="num_salle" class="form-control"  min="1" max="100" ><br><br><br>
+                        <?php if (!empty($erreurdispoformateur)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreurdispoformateur ?>
+                            </div>
+                        <?php } ?>
+
+                        <label for="formateur">Formateur :</label>
+                        <select name="id_formateur" id="id_formateur" class="form-control" required>
+                                <?php while($formateur=$resultatf->fetch_assoc()) { ?>
+                                        <option value="<?php echo $formateur['id']; ?>" > 
+                                            <?php echo $formateur['nom'] . ' ' . $formateur['prenom'] ?>
+                                        </option>
+                                <?php }?>
+                        </select>
+                            
+
                         
-                        
+                        <br><br><br>
                         <button class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;Enregistrer</button>
                     </div>

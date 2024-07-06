@@ -41,7 +41,7 @@ session_destroy();
                            placeholder="Mot de passe" class="form-control"/>
                 </div>
 
-                <button class="btn btn-primary" ><a href="../index.php" style="color: white;"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" onclick="window.history.back();" ><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit" class="btn btn-success">
                     <span class="glyphicon glyphicon-log-in"></span>
                     S'authentifier

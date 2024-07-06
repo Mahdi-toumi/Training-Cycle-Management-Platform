@@ -1,7 +1,7 @@
 <?php 
-    session_start();
+    session_start() ;
     
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['admin'])) {
         include ("../connexion.php") ;
         $num_action = isset($_POST['num_action']) ? $_POST['num_action'] : "";
         $entreprise = isset($_POST['entreprise']) ? $_POST['entreprise'] : "";
@@ -18,16 +18,39 @@
         $pause_deb = isset($_POST['pause_deb']) ? $_POST['pause_deb'] : "";
         $pause_fin = isset($_POST['pause_fin']) ? $_POST['pause_fin'] : "";
         $num_salle = isset($_POST['num_salle']) ? $_POST['num_salle'] : "";
+        $id_formateur = isset($_POST['id_formateur']) ? $_POST['id_formateur'] : "";
+
+
+        $requetecount = "SELECT count(*) countC FROM cycles WHERE id_formateur = '$id_formateur' AND 
+                        ((date_deb <= '$date_fin' AND date_fin >= '$date_deb') OR 
+                        (date_deb <= '$date_fin' AND date_fin >= '$date_deb')) ";
+        $resultatcount = $conn->query($requetecount);
+        $tabCount = $resultatcount->fetch_assoc();
+        $nbrcycles = $tabCount['countC'];
+
+        if ($nbrcycles == 0) {
+
+            $requete = "INSERT INTO cycles (num_action, entreprise, theme, mode, lieu, gouvernorat, credit_impot, droit_tirage, date_deb, date_fin, heure_deb, heure_fin, pause_deb, pause_fin, num_salle ,id_formateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $params = array($num_action, $entreprise, $theme, $mode, $lieu, $gouvernorat, $credit_impot, $droit_tirage, $date_deb, $date_fin, $heure_deb, $heure_fin, $pause_deb, $pause_fin, $num_salle, $id_formateur);
+
+            $resultat = $conn->prepare($requete);
+            $resultat->execute($params);
+            header('Location: cycles.php');
+            exit();
+
+        }
+        else {
+            $_SESSION['dispoformateur']="<strong>Erreur</strong> Le formateur est déjà affecté à un cycle pendant cette période!!!";
+            header('Location: nouveaucycle.php');
+            
+
+        }
+
+
 
         
-        $requete = "INSERT INTO cycles (num_action, entreprise, theme, mode, lieu, gouvernorat, credit_impot, droit_tirage, date_deb, date_fin, heure_deb, heure_fin, pause_deb, pause_fin, num_salle) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $params = array($num_action, $entreprise, $theme, $mode, $lieu, $gouvernorat, $credit_impot, $droit_tirage, $date_deb, $date_fin, $heure_deb, $heure_fin, $pause_deb, $pause_fin, $num_salle);
+        
 
-        $resultat = $conn->prepare($requete);
-        $resultat->execute($params);
-
-        header('Location: cycles.php');
-        exit();
     }
     else {
         header('login.php') ;

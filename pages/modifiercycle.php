@@ -1,7 +1,7 @@
 <?php 
     session_start();
     
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['admin'])) {
         include ("../connexion.php") ;
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         $requete = "SELECT * FROM cycles where id='$id' " ; 
@@ -23,6 +23,10 @@
             $pause_deb = $cycle['pause_deb'];
             $pause_fin = $cycle['pause_fin'];
             $num_salle = $cycle['num_salle'];
+            $id_formateur = $cycle['id_formateur'];
+
+            $requetef="select * from formateurs ";
+            $resultatf=$conn->query($requetef);
         }
     }
     else {
@@ -101,9 +105,22 @@
                         
                         <label for="num_salle">Numéro salle :</label>
                         <input type="number" name="num_salle" id="num_salle" class="form-control" value="<?php echo $num_salle ?>"  min="1" max="100" ><br><br><br>
+
+                        <label for="formateur">Formateur :</label>
+                        <select name="id_formateur" id="id_formateur" class="form-control" required>
+                            <?php while($formateur = $resultatf->fetch_assoc()) { ?>
+                                <option value="<?php echo $formateur['id']; ?>" <?php if($formateur['id'] == $id_formateur) echo "selected"; ?>>
+                                    <?php echo $formateur['nom'] . ' ' . $formateur['prenom']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                            
+
+                        
+                        <br><br><br>
                         
                         
-                        <button class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="buton" class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;Enregistrer</button>
 
                     </div>

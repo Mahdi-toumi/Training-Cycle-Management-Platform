@@ -1,3 +1,3 @@
 <?php 
-header("location: pages/cycles.php") ;
+header("location: pages/first.php") ;
 ?> 

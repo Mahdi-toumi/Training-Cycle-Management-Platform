@@ -1,7 +1,7 @@
 <?php 
     session_start();
     
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['admin'])) {
         include ("../connexion.php") ;
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
     

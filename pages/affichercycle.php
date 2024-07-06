@@ -21,6 +21,10 @@
         $pause_deb = $cycle['pause_deb'];
         $pause_fin = $cycle['pause_fin'];
         $num_salle = $cycle['num_salle'];
+        $id_formateur = $cycle['id_formateur'];
+
+        $requetef="select * from formateurs where id = '$id_formateur' ";
+        $resultatf=$conn->query($requetef);
     }
 
 ?> 
@@ -92,16 +96,28 @@
                         <label for="num_salle" class="info">Numéro salle : <?php echo $num_salle ?></label>
                         <input type="hidden" name="num_salle" id="num_salle" class="form-control" value="<?php echo $num_salle ?>"  min="1" max="100" ><br><br><br>
 
-                        <label for="num_salle" class="info">Formateur : pas encore!!!!</label><br><br>
+                        <label class="info" for="formateur">Formateur : 
+                            <?php 
+                            if($formateur = $resultatf->fetch_assoc()) { 
+                                 echo $formateur['nom'] . ' ' . $formateur['prenom']; 
+                            } ?>
+                        </label><br><br><br>
 
-                        <button class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>
+
+
+                        <button type="button" class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button> &nbsp;&nbsp;
+                        <?php if (!isset($_SESSION['admin'])) { ?>
+                                            <button class="btn btn-success"> <a style="color:white;"  href="inscrire.php?id=<?php echo $cycle['id']  ?>"> <span class="glyphicon glyphicon-pencil"></span>&nbsp;S'inscrire</a> </button> 
+                        <?php } ?>
+
+                        
                         
                         
                         
                         
                     </div>
                             
-                </form>
+                
 
             </div>
         </div>

@@ -7,7 +7,7 @@
         $requete = "SELECT * FROM cycles where id='$id' " ; 
         $res = $conn -> query($requete) ;
         if ($cycle = $res->fetch_assoc()) {
-            // Assign fetched data to variables
+
             $num_action = $cycle['num_action'];
             $entreprise = $cycle['entreprise'];
             $theme = $cycle['theme'];
@@ -27,6 +27,47 @@
 
             $requetef="select * from formateurs ";
             $resultatf=$conn->query($requetef);
+
+
+
+            if (isset($_SESSION['dispoformateur'])){
+                $erreurdispoformateur = $_SESSION['dispoformateur'];
+                unset($_SESSION['dispoformateur']);}
+            else {
+                    $erreurdispoformateur = "";
+            }
+
+            if (isset($_SESSION['erreuredate'])){
+                    $erreuredate = $_SESSION['erreuredate'];
+                    unset($_SESSION['erreuredate']);}
+            else {
+                    $erreuredate = "";
+            }
+
+            if (isset($_SESSION['erreureheure'])){
+                $erreureheure = $_SESSION['erreureheure'];
+                unset($_SESSION['erreureheure']);}
+            else {
+                    $erreureheure = "";
+            }
+
+            if (isset($_SESSION['erreurepause'])){
+                $erreurepause = $_SESSION['erreurepause'];
+                unset($_SESSION['erreurepause']);}
+            else {
+                    $erreurepause = "";
+            }
+
+            if (isset($_SESSION['erreuresalle'])){
+                $erreuresalle = $_SESSION['erreuresalle'];
+                unset($_SESSION['erreuresalle']);}
+            else {
+                    $erreurepause = "";
+            }
+              
+
+
+
         }
     }
     else {
@@ -85,27 +126,56 @@
                         <label for="droit_tirage_c" class="margeleft">Droit tirage (collectif) :</label>
                         <input type="radio" id="droit_tirage_c" name="droit_tirage" class="custom-checkbox" value="0"  <?php if($droit_tirage=="0") echo "checked" ?> required><br><br><br>
                         
+                        <?php if (!empty($erreuredate)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreuredate ?>
+                            </div>
+                        <?php } ?>
+
                         <label for="date_deb">Date début :</label>
                         <input type="date" id="date_deb" name="date_deb" class="form-control margeright" value="<?php echo $date_deb ?>" required>
                         
                         <label for="date_fin">Date fin :</label>
                         <input type="date" id="date_fin" name="date_fin" class="form-control margeright" value="<?php echo $date_fin ?>" required><br><br>
                         
+                        <?php if (!empty($erreureheure)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreureheure ?>
+                            </div>
+                        <?php } ?>
+
                         <label for="heure_deb">Heure début :</label>
                         <input type="time" id="heure_deb" name="heure_deb" class="form-control margeright" value="<?php echo $heure_deb ?>" required>
                         
                         <label for="heure_fin">Heure fin :</label>
                         <input type="time" id="heure_fin" name="heure_fin" class="form-control margeright" value="<?php echo $heure_fin ?>" required><br><br>
                         
+                        <?php if (!empty($erreurepause)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreurepause ?>
+                            </div>
+                        <?php } ?>
+
                         <label for="pause_deb">Pause début :</label>
                         <input type="time" id="pause_deb" name="pause_deb" class="form-control margeright" value="<?php echo $pause_deb ?>" required>
                         
                         <label for="pause_fin">Pause fin :</label>
                         <input type="time" id="pause_fin" name="pause_fin" class="form-control margeright" value="<?php echo $pause_fin ?>" required><br><br>
                         
+                        <?php if (!empty($erreuresalle)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreuresalle ?>
+                            </div>
+                        <?php } ?>
+
                         <label for="num_salle">Numéro salle :</label>
                         <input type="number" name="num_salle" id="num_salle" class="form-control" value="<?php echo $num_salle ?>"  min="1" max="100" ><br><br><br>
-
+                        <?php if (!empty($erreurdispoformateur)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreurdispoformateur ?>
+                            </div>
+                        <?php } ?>    
+                            
                         <label for="formateur">Formateur :</label>
                         <select name="id_formateur" id="id_formateur" class="form-control" required>
                             <?php while($formateur = $resultatf->fetch_assoc()) { ?>

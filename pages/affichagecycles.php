@@ -76,7 +76,9 @@
                     <input type="text" name="theme" id="theme" placeholder="Taper le thème" class="form-control">
                     <label for="date_deb">Date debut : </label>
                     <input type="date" name="date_deb" id="date_deb"class="form-control">
+                    <?php if (isset($_SESSION['admin'])) { ?>
                     <input type="number" name="num_salle" id="num_salle" placeholder="N° salle" class="form-control"  min="1" max="100" >
+                    <?php } ?>
                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span>Chercher...</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
                 <?php if (isset($_SESSION['admin'])) { ?>
@@ -105,7 +107,11 @@
                     <table class="table table-striped centred">
                         <thead>
                             <tr>
-                                <th>Id cycle</th> <th>Thème de formation</th> <th>Date debut</th> <th>Date fin</th> <th>Num salle</th>  <th>Actions</th> 
+                                <th>Id cycle</th> <th>Thème de formation</th> <th>Date debut</th> <th>Date fin</th> 
+                                 <?php if (isset($_SESSION['admin'])) { ?>
+                                    <th>Num salle</th> 
+                                    <?php  } ?>  
+                                    <th>Actions</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +122,9 @@
                                     <td><?php echo $cycles['theme']?></td> 
                                     <td><?php echo $cycles['date_deb']?></td> 
                                     <td><?php echo $cycles['date_fin']?></td> 
+                                    <?php if (isset($_SESSION['admin'])) { ?>
                                     <td><?php echo $cycles['num_salle']?></td>
+                                    <?php } ?>
                                     <td><a href="affichercycle.php?id=<?php echo $cycles['id']  ?>">
                                             <span class="glyphicon glyphicon-list-alt"></span>      </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         

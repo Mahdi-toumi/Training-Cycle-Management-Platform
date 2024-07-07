@@ -26,6 +26,9 @@
         $requetef="select * from formateurs where id = '$id_formateur' ";
         $resultatf=$conn->query($requetef);
 
+        $requetep="select * from participants where id_cycle = '$id' ";
+        $resultatp=$conn->query($requetep);
+
 
         $date_deb = new DateTime($date_deb);
         $date_fin = new DateTime($date_fin);
@@ -64,6 +67,13 @@
             border-radius: 0%;
             text-align : center ;
         }
+
+        .emargement td {
+            line-height: 10px;
+            max-width: 60px;
+            padding : 2.5px ;
+        }
+
                 
     </style>
 
@@ -107,7 +117,7 @@
                     <tr>
                         <th rowspan="2" style ="width : 22px" >N°</th>
                         <th rowspan="2" style ="width : 170px">Nom et Prénom</th>
-                        <th rowspan="2" style ="width : 90px">N°CIN</th>
+                        <th rowspan="2" style ="width : 110px">N°CIN</th>
                         <th rowspan="2" style ="width : 139px">Direction / service</th>
                         <th rowspan="2">Entreprise</th>
                         <th colspan="6" style ="width : 220px ; line-height: 6px; ">EMARGEMENT</th>
@@ -127,133 +137,214 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>8</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                        <?php  if($participant = $resultatp->fetch_assoc()) { 
+                               echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                               echo "<td>" . $participant['cin'] . "</td>"; 
+                               echo "<td>" . $participant['direction'] . "</td>"; 
+                               echo "<td>" . $participant['entreprise'] . "</td>"; 
+                           } 
+                           else {
+                               echo "<td> </td> <td></td><td></td><td></td>" ;
+                           }
+                       ?>
+                   </td>
+                   <td> </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
                     </tr>
                     <tr>
                         <td>10</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
+                             <?php  if($participant = $resultatp->fetch_assoc()) { 
+                                    echo "<td>" . $participant['nom'] . ' ' . $participant['prenom'] . "</td>";    
+                                    echo "<td>" . $participant['cin'] . "</td>"; 
+                                    echo "<td>" . $participant['direction'] . "</td>"; 
+                                    echo "<td>" . $participant['entreprise'] . "</td>"; 
+                                } 
+                                else {
+                                    echo "<td> </td> <td></td><td></td><td></td>" ;
+                                }
+                            ?>
+                        </td>
                         <td> </td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
+                        
                     </tr>
                     <!-- Continuer jusqu'à 10 lignes -->
                 
@@ -295,7 +386,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="cachet"><p><b>Signature et Cachet de l'organisme de formation / Entreprise</b></p><br>
+            <div class="cachet"><p><br><b>Signature et Cachet de l'organisme de formation / Entreprise</b></p><br>
                     
                         <button class="btn btn-primary" id="retourButton" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>
                         <button class="btn btn-success " id="printButton" onclick="printDocument()"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;Imprimer</button>

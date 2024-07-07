@@ -13,7 +13,35 @@
         else {
                 $erreurdispoformateur = "";
         }
-        
+
+        if (isset($_SESSION['erreuredate'])){
+                $erreuredate = $_SESSION['erreuredate'];
+                unset($_SESSION['erreuredate']);}
+        else {
+                $erreuredate = "";
+        }
+
+        if (isset($_SESSION['erreureheure'])){
+            $erreureheure = $_SESSION['erreureheure'];
+            unset($_SESSION['erreureheure']);}
+        else {
+                $erreureheure = "";
+        }
+
+        if (isset($_SESSION['erreurepause'])){
+            $erreurepause = $_SESSION['erreurepause'];
+            unset($_SESSION['erreurepause']);}
+        else {
+                $erreurepause = "";
+        }
+
+        if (isset($_SESSION['erreuresalle'])){
+            $erreuresalle = $_SESSION['erreuresalle'];
+            unset($_SESSION['erreuresalle']);}
+        else {
+                $erreurepause = "";
+        }
+            
     }
 
 ?>
@@ -25,6 +53,7 @@
     <title>Nouveau cycle</title>
     <link rel="stylesheet" type = "text/css" href="../css/bootstrap.min.css" >
     <link rel="stylesheet" type = "text/css" href="../css/style.css" >
+    
 </head>
 <body>
     <?php include("menu.php") ; ?>
@@ -36,7 +65,7 @@
             </div>
             <div class="panel-body">
 
-                <form method="post" action="insertcycle.php"  class="form-inline">
+                <form method="post" action="insertcycle.php"  class="form-inline" onsubmit="return validateForm()>
                     <div class="form-group">
                         <br>
                         <label for="num_action">N° action :</label>
@@ -65,27 +94,52 @@
                         
                         <label for="droit_tirage_c" class="margeleft">Droit tirage (collectif) :</label>
                         <input type="radio" id="droit_tirage_c" name="droit_tirage" class="custom-checkbox" value="0" required><br><br><br>
+
+                        <?php if (!empty($erreuredate)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreuredate ?>
+                            </div>
+                        <?php } ?>
                         
                         <label for="date_deb">Date début :</label>
                         <input type="date" id="date_deb" name="date_deb" class="form-control margeright" required>
                         
                         <label for="date_fin">Date fin :</label>
                         <input type="date" id="date_fin" name="date_fin" class="form-control margeright" required><br><br>
+
+                        <?php if (!empty($erreureheure)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreureheure ?>
+                            </div>
+                        <?php } ?>
                         
                         <label for="heure_deb">Heure début :</label>
                         <input type="time" id="heure_deb" name="heure_deb" class="form-control margeright" required>
                         
                         <label for="heure_fin">Heure fin :</label>
                         <input type="time" id="heure_fin" name="heure_fin" class="form-control margeright" required><br><br>
+
+                        <?php if (!empty($erreurepause)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreurepause ?>
+                            </div>
+                        <?php } ?>
                         
                         <label for="pause_deb">Pause début :</label>
                         <input type="time" id="pause_deb" name="pause_deb" class="form-control margeright" required>
                         
                         <label for="pause_fin">Pause fin :</label>
                         <input type="time" id="pause_fin" name="pause_fin" class="form-control margeright" required><br><br>
+
+                        <?php if (!empty($erreuresalle)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreuresalle ?>
+                            </div>
+                        <?php } ?>
                         
                         <label for="num_salle">Numéro salle :</label>
-                        <input type="number" name="num_salle" id="num_salle" class="form-control"  min="1" max="100" ><br><br><br>
+                        <input type="number" name="num_salle" id="num_salle" class="form-control"  min="1" max="10" ><br><br><br>
+                        
                         <?php if (!empty($erreurdispoformateur)) { ?>
                             <div class="alert alert-danger">
                                 <?php echo $erreurdispoformateur ?>
@@ -100,9 +154,6 @@
                                         </option>
                                 <?php }?>
                         </select>
-                            
-
-                        
                         <br><br><br>
                         <button class="btn btn-primary" onclick="window.history.back();"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Retour</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success "><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;Enregistrer</button>
@@ -113,6 +164,6 @@
             </div>
         </div>
 
-    </div>
+    </div>    
 </body>
 </html>

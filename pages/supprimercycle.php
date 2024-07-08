@@ -1,47 +1,38 @@
-<?php 
-    session_start();
-    
-    if (isset($_SESSION['admin'])) {
-        include ("../connexion.php") ;
-        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+<?php
+session_start();
 
-        $requeteparticipant = "SELECT count(*) countC FROM participants WHERE id_cycle = '$id'" ;
-        $resultatcount = $conn->query($requeteparticipant);
-        $tabCount = $resultatcount->fetch_assoc();
-        $nbrparticipants = $tabCount['countC'];
-        if($nbrparticipants==0){
-            $requete = "delete from cycles where id=?";
-            $params = array($id);
+if (isset($_SESSION['admin'])) {
+    require_once("../connexion.php");
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-            $resultat = $conn->prepare($requete);
-            $resultat->execute($params);
+    $requeteparticipant = "SELECT count(*) countC FROM participants WHERE id_cycle = '$id'";
+    $resultatcount = $conn->query($requeteparticipant);
+    $tabCount = $resultatcount->fetch_assoc();
+    $nbrparticipants = $tabCount['countC'];
+    if ($nbrparticipants == 0) {
+        $requete = "delete from cycles where id=?";
+        $params = array($id);
 
-            header('Location: cycles.php');
-            exit();
-        }
-        else{
-            $requeteparticipants = "delete from participants where id_cycle=?";
-            $params = array($id);
-            $resultatparticipants = $conn->prepare($requeteparticipants);
-            $resultatparticipants->execute($params);
+        $resultat = $conn->prepare($requete);
+        $resultat->execute($params);
 
-            $requete = "delete from cycles where id=?";
-            
+        header('Location: cycles.php');
+        exit();
+    } else {
+        $requeteparticipants = "delete from participants where id_cycle=?";
+        $params = array($id);
+        $resultatparticipants = $conn->prepare($requeteparticipants);
+        $resultatparticipants->execute($params);
 
-            $resultat = $conn->prepare($requete);
-            $resultat->execute($params);
-
-            header('Location: cycles.php');
-            exit();
-
-        }
+        $requete = "delete from cycles where id=?";
 
 
-    
-        
+        $resultat = $conn->prepare($requete);
+        $resultat->execute($params);
+
+        header('Location: cycles.php');
+        exit();
     }
-    else {
-        header('login.php') ;
-    }
-
-?>
+} else {
+    header('login.php');
+}

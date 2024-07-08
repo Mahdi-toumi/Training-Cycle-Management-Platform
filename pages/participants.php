@@ -1,58 +1,59 @@
-<?php 
-   session_start() ;
-   if (!isset($_SESSION['admin']))  header ('location: ../index.php') ;
-   include ("../connexion.php");
+<?php
+session_start();
+if (!isset($_SESSION['admin']))  header('location: ../index.php');
+require_once("../connexion.php");
 
-    $cin = isset($_GET['cin']) ? $_GET['cin'] : ""; 
-    $theme = isset($_GET['theme']) ? $_GET['theme'] : ""; 
+$cin = isset($_GET['cin']) ? $_GET['cin'] : "";
+$theme = isset($_GET['theme']) ? $_GET['theme'] : "";
 
-    $size = isset($_GET['size']) ? $_GET['size'] : 5;
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $offset = ($page - 1) * $size;
+$size = isset($_GET['size']) ? $_GET['size'] : 10;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $size;
 
 
-    $requete = "SELECT participants.*, cycles.theme 
+$requete = "SELECT participants.*, cycles.theme 
                 FROM participants 
                 LEFT JOIN cycles ON participants.id_cycle = cycles.id 
                 WHERE 1=1";
 
-    if ($cin != "") {
-        $requete .= " AND participants.cin LIKE '%$cin%'";
-    }
+if ($cin != "") {
+    $requete .= " AND participants.cin LIKE '%$cin%'";
+}
 
-    if ($theme != "") {
-        $requete .= " AND cycles.theme = '$theme'";
-    }
+if ($theme != "") {
+    $requete .= " AND cycles.theme = '$theme'";
+}
 
-    $requete .= " LIMIT $size OFFSET $offset";
-    $resultat = $conn->query($requete);
-
-
+$requete .= " LIMIT $size OFFSET $offset";
+$resultat = $conn->query($requete);
 
 
-    $requetecount = "SELECT COUNT(*) as countC 
+
+
+$requetecount = "SELECT COUNT(*) as countC 
                      FROM participants 
                      LEFT JOIN cycles ON participants.id_cycle = cycles.id 
                      WHERE 1=1";
 
-    if ($cin != "") {
-        $requetecount .= " AND cin LIKE '%$cin%'";
-    }
+if ($cin != "") {
+    $requetecount .= " AND cin LIKE '%$cin%'";
+}
 
-    if ($theme != "") {
-        $requetecount .= " AND cycles.theme = '$theme'";
-    }
+if ($theme != "") {
+    $requetecount .= " AND cycles.theme = '$theme'";
+}
 
-    $resultatcount = $conn->query($requetecount);
-    $tabCount = $resultatcount->fetch_assoc();
-    $nbrparticipant = $tabCount['countC'];
+$resultatcount = $conn->query($requetecount);
+$tabCount = $resultatcount->fetch_assoc();
+$nbrparticipant = $tabCount['countC'];
 
-    $nbrpage = ceil($nbrparticipant / $size);
+$nbrpage = ceil($nbrparticipant / $size);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +61,7 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
+
 <body>
     <?php include("menu.php"); ?>
     <div class="container">
@@ -85,7 +87,7 @@
                 Liste des participants (<?php echo $nbrparticipant; ?> participants)
             </div>
             <div class="panel-body">
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered centred">
                     <thead>
                         <tr>
                             <th>Id participant</th>
@@ -124,4 +126,5 @@
         </div>
     </div>
 </body>
+
 </html>

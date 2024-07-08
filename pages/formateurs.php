@@ -1,61 +1,61 @@
-<?php 
-        session_start() ;
-        if (!isset($_SESSION['admin']))  header ('location: ../index.php') ;
-        
-        include ("../connexion.php") ;
-    
-    
-        $specialite = isset($_GET['specialite'] ) ? $_GET['specialite'] : "" ; 
-        $direction = isset($_GET['direction'] ) ? $_GET['direction'] : "" ; 
-    
-        $size=isset($_GET['size'])?$_GET['size']:5;
-        $page=isset($_GET['page'])?$_GET['page']:1;
-        $offset=($page-1)*$size;
-    
-        $requete = "SELECT * FROM formateurs WHERE 1=1";
-        if ($specialite != "") {
-            $requete .= " AND specialite LIKE '%$specialite%'";
-        }
-    
-        if ($direction != "") {
-            $requete .= " AND direction LIKE '%$direction%'";
-        }
-    
-     
-        $requete .= " limit $size 
+<?php
+session_start();
+if (!isset($_SESSION['admin']))  header('location: ../index.php');
+
+require_once("../connexion.php");
+
+
+$specialite = isset($_GET['specialite']) ? $_GET['specialite'] : "";
+$direction = isset($_GET['direction']) ? $_GET['direction'] : "";
+
+$size = isset($_GET['size']) ? $_GET['size'] : 5;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $size;
+
+$requete = "SELECT * FROM formateurs WHERE 1=1";
+if ($specialite != "") {
+    $requete .= " AND specialite LIKE '%$specialite%'";
+}
+
+if ($direction != "") {
+    $requete .= " AND direction LIKE '%$direction%'";
+}
+
+
+$requete .= " limit $size 
                       offset $offset";
-        $resultat=$conn->query($requete) ;
-    
-    
-        $requetecount = "SELECT count(*) countC FROM formateurs WHERE 1=1";
-    
-        if ($specialite != "") {
-            $requetecount .= " AND specialite LIKE '%$specialite%'";
-        }
-    
-        if ($direction != "") {
-            $requetecount .= " AND direction LIKE '%$direction%'";
-        }
-    
-       
-    
-        
-    
-        $resultatcount=$conn->query($requetecount) ;
-        
-        $tabCount=$resultatcount->fetch_assoc();
-        $nbrformateurs = $tabCount['countC'] ;
-    
-        if ($nbrformateurs % $size == 0){
-            $nbrpage = $nbrformateurs / $size  ;
-        }
-        else  $nbrpage = floor ($nbrformateurs / $size)+1 ; //floor() -> partie entiere 
-    
+$resultat = $conn->query($requete);
+
+
+$requetecount = "SELECT count(*) countC FROM formateurs WHERE 1=1";
+
+if ($specialite != "") {
+    $requetecount .= " AND specialite LIKE '%$specialite%'";
+}
+
+if ($direction != "") {
+    $requetecount .= " AND direction LIKE '%$direction%'";
+}
+
+
+
+
+
+$resultatcount = $conn->query($requetecount);
+
+$tabCount = $resultatcount->fetch_assoc();
+$nbrformateurs = $tabCount['countC'];
+
+if ($nbrformateurs % $size == 0) {
+    $nbrpage = $nbrformateurs / $size;
+} else  $nbrpage = floor($nbrformateurs / $size) + 1; //floor() -> partie entiere 
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,6 +63,7 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
+
 <body>
     <?php include("menu.php"); ?>
     <div class="container">
@@ -74,18 +75,18 @@
                 <form method="get" action="formateurs.php" class="form-inline">
                     <div class="form-group">
                         <input type="text" name="direction" id="direction" placeholder="Taper la direction" class="form-control"> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" name="specialite" id="specialite" placeholder="Taper la specialite" class="form-control" > &nbsp;&nbsp;&nbsp;&nbsp;                      
+                        <input type="text" name="specialite" id="specialite" placeholder="Taper la specialite" class="form-control"> &nbsp;&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-search"></span> Chercher...
                         </button> &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <a href="nouveauformateur.php">
-                            
-                                <span class="glyphicon glyphicon-plus"></span>
-                                
-                                Nouveau formateur
-                                
-                            </a>
+
+                        <span class="glyphicon glyphicon-plus"></span>
+
+                        Nouveau formateur
+
+                    </a>
                 </form>
             </div>
         </div>
@@ -95,14 +96,15 @@
                 Liste des formateurs (<?php echo $nbrformateurs; ?> participants)
             </div>
             <div class="panel-body">
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered centred">
                     <thead>
                         <tr>
                             <th>Id formateur</th>
                             <th>Nom & Prenom</th>
                             <th>Direction </th>
-                            <th>Specialite</th> <th></th>
-                            
+                            <th>Specialite</th>
+                            <th>Actions</th>
+
 
                         </tr>
                     </thead>
@@ -114,10 +116,10 @@
                                 <td><?php echo $formateurs['direction']; ?></td>
                                 <td><?php echo $formateurs['specialite']; ?></td>
                                 <td>
-                                         <a href="modifierformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                         <a onclick= "return confirm('Etes vous sur de vouloir supprimer le formateur')" href="supprimerformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
-                                    </td> 
-                                </tr>
+                                    <a href="modifierformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-edit"></span>Modifier</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a onclick="return confirm('Etes vous sur de vouloir supprimer le formateur')" href="supprimerformateur.php?id=<?php echo $formateurs['id']  ?>"> <span class="glyphicon glyphicon-trash"></span>Supprimer</a>
+                                </td>
+                            </tr>
 
                             </tr>
                         <?php } ?>
@@ -138,4 +140,5 @@
         </div>
     </div>
 </body>
+
 </html>

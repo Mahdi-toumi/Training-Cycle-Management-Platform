@@ -1,5 +1,8 @@
 <?php
+session_start();
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
         <div class="panel panel-primary margetop">
             <div class="panel-heading">
-                Veuillez saisir les données du nouvaeu cycle
+                Veuillez saisir Vos données 
             </div>
             <div class="panel-body">
 

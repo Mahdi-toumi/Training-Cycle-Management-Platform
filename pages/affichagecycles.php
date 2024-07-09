@@ -60,6 +60,22 @@ if (!isset($_SESSION['admin'])) {
     }
 }
 
+if (!isset($_SESSION['admin'])) {
+    if (isset($_SESSION['inscription']))
+        $inscription = $_SESSION['inscription'];
+    else {
+        $inscription = "";
+    }
+}
+
+if (isset($_SESSION['erreurinscription'])) {
+    $erreurinscription = $_SESSION['erreurinscription'];
+    unset($_SESSION['erreurinscription']);
+} else {
+    $erreurinscription = "";
+}
+
+
 if (!isset($_SESSION['admin']))  session_destroy();
 
 ?>
@@ -97,12 +113,17 @@ if (!isset($_SESSION['admin']))  session_destroy();
         <div class="panel-heading">
             Liste des cycles (<?php echo $nbrcycles; ?> cycles)
         </div>
-        <div class="panel-body">
-            <?php if (!empty($erreurinscription)) { ?>
-                <div class="alert alert-danger">
-                    <?php echo $erreurinscription ?>
+        <div class="panel-body" id="panel">
+            <?php if (!empty($inscription)) { ?>
+                <div class="alert alert-success">
+                    <?php echo $inscription ?>
                 </div>
             <?php } ?>
+            <?php if (!empty($erreurinscription)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreurinscription ?>
+                            </div>
+                        <?php } ?>
             <table class="table table-striped table-bordered centred">
                 <thead>
                     <tr>

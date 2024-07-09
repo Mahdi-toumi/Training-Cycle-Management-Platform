@@ -53,7 +53,7 @@
         <h2 class="text-center"><b>Présentation de l'entreprise</b></h2><br><br>
         <p class="text-center">
             Le Centre National de l'Informatique (CNI) est une institution dédiée à la formation professionnelle et au développement des compétences dans le domaine de l'informatique.
-            Fort de plusieurs années d'expérience, le CNI propose des programmes de formation adaptés aux besoins du marché et des entreprises. <small><a href="http://www.cni.tn/index.php/fr/layout-3/presentation-du-cni-2" target="_blank">plus d'information</a></small>
+            Fort de plusieurs années d'expérience, le CNI propose des programmes de formation adaptés aux besoins du marché et des entreprises. <small><a href="http://www.cni.tn/index.php/fr/layout-3/presentation-du-cni-2" target="_blank">&nbsp;plus d'informations</a></small>
         </p>
     </section><br>
     <hr>

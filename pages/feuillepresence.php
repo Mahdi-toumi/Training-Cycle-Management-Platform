@@ -90,6 +90,10 @@ if ($cycle = $res->fetch_assoc()) {
             max-width: 65px;
             padding: 2.5px;
         }
+        .emargement b {
+            font-size : 9px ;
+        }
+
     </style>
 
 </head>

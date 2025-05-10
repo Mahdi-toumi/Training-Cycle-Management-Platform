@@ -42,7 +42,7 @@ This project develops a web-based platform for managing training cycles at the C
    - MySQL
    - A modern web browser (e.g., Chrome, Firefox)
 2. **Setup**:
-   - Clone the repository: `git clone https://github.com/yourusername/training-cycle-management.git`
+   - Clone the repository: `git clone https://github.com/Mahdi-toumi/Training-Cycle-Management-Platform.git`
    - Copy the project files to the `htdocs` folder in your XAMPP installation.
    - Start XAMPP and ensure Apache and MySQL services are running.
    - Import the provided `database.sql` script into MySQL via phpMyAdmin to set up the database.

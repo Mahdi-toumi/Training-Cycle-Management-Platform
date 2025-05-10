@@ -106,8 +106,5 @@ This project develops a web-based platform for managing training cycles at the C
 ## Contributors
 - **Mahdi TOUMI**: Lead developer, system design, and implementation.
 
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
 ## Acknowledgments
 Developed during a one-month internship at the Centre National de l'Informatique (CNI) as part of the academic requirements at École Nationale d'Ingénieurs de Carthage (ENICarthage). Special thanks to Mohammed Ali SAADAOUI for supervision and the CNI team for their support.

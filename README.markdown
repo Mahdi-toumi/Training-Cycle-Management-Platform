@@ -96,6 +96,13 @@ This project develops a web-based platform for managing training cycles at the C
 - **Current Scope**: Designed for CNI’s internal use; lacks multi-organization support.
 - **Offline Access**: Requires internet connectivity for full functionality.
 - **Basic UI**: Interface could benefit from modern design frameworks.
+## Screenshots 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ab1cb019-7f05-4807-b0ef-75d0c1bbae3b" alt="User Profile" width="300"/>
+  <img src="https://github.com/user-attachments/assets/a90f23ad-5888-47a5-99fa-8541dde5a63e" alt="Reservation History" width="300"/>
+  <img src="https://github.com/user-attachments/assets/2f1271e7-5d9c-4ade-ad2a-0171057d65cd" alt="Profile Settings" width="300"/>
+</p>
+
 
 ## Future Improvements
 - Integrate APIs for third-party calendar syncing.
@@ -108,3 +115,5 @@ This project develops a web-based platform for managing training cycles at the C
 
 ## Acknowledgments
 Developed during a one-month internship at the Centre National de l'Informatique (CNI) as part of the academic requirements at École Nationale d'Ingénieurs de Carthage (ENICarthage). Special thanks to Mohammed Ali SAADAOUI for supervision and the CNI team for their support.
+
+
